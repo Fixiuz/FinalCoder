@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Agrega aquí los enlaces a tus archivos CSS y otros encabezados si es necesario -->
+</head>
+<body>
+    <h1>¿Estás seguro que deseas borrar este comentario?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Sí, borrar comentario</button>
+    </form>
+    <a href="{% url 'comment_list' %}">Cancelar y volver a la Lista</a>
+    <!-- Agrega aquí los enlaces a tus archivos JS si es necesario -->
+</body>
+</html>

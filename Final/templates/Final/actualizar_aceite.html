@@ -1,0 +1,14 @@
+{% extends 'Final/pepito.html' %}
+
+{% block contenidoQueCambia %}
+    {{mensaje}}
+
+    <h1>Agregar Aceite</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+    </form>
+
+    <p style="color: red;">{{ respuesta }}</p>
+{% endblock %}

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Borrar Aceite</title>
+</head>
+<body>
+    <h1>¿Estás seguro que deseas borrar el aceite "{{ aceite.nombre }}"?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Borrar">
+    </form>
+    <a href="{% url 'Final:detalle_aceite' aceite.id %}">Cancelar</a>
+</body>
+</html>

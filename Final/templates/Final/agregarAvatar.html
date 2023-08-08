@@ -1,0 +1,12 @@
+{% extends 'Final/inicio.html' %}
+
+{% load static%}
+    
+{% block contenidoQueCambia %}
+<h1>Avatar</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ miFormulario.as_p }}
+    <button type="submit">Guardar Avatar</button>
+</form>
+{% endblock %}  

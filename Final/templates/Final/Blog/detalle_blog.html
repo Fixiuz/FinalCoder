@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalle del Aceite</title>
+</head>
+<body>
+    <h1>Detalle del Aceite "{{ aceite.nombre }}"</h1>
+    <p>Descripción: {{ aceite.descripcion }}</p>
+    <p>Uso: {{ aceite.uso }}</p>
+    <p>
+        <a href="{% url 'List/blog' %}">Regresar</a>
+    </p>
+    
+</body>
+</html>

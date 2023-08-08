@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Borrar Blog</title>
+</head>
+<body>
+    <h1>¿Estás seguro que deseas borrar esta entrada? "{{ blog.nombre }}"?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Borrar">
+    </form>
+    <a href="{% url 'Final:detalle_blog' blog.id %}">Cancelar</a>
+</body>
+</html>
