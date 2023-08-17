@@ -32,7 +32,8 @@ urlpatterns = [
     path('comments/<int:pk>/edit/', views.CommentUpdateView.as_view(), name='comment_edit'),
     path('comments/<int:pk>/delete/', views.CommentDeleteView.as_view(), name='comment_delete'),
     path('editarPerfil', views.editarPerfil, name='EditarPerfil'),
-    path('agregarAvatar', views.agregarAvatar, name='AgregarAvatar')
+    path('agregarAvatar', views.agregarAvatar, name='AgregarAvatar'),
+    
     ]
 
 

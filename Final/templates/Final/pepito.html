@@ -19,9 +19,35 @@
                 <a class="navbar-brand" href="{% url 'Inicio' %}">Inicio</a>
                 <a class="navbar-brand" href="{% url 'List' %}">Aromaterapia</a>    
                 <a class="navbar-brand" href="{% url 'comment_list' %}">Foro</a>
-                
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        {% if not request.user.is_authenticated  %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'Login' %}">Iniciar Sesión</a></li>
+                        {% endif %}
+                        {% if not request.user.is_authenticated  %}    
+                            <li class="nav-item"><a class="nav-link" href="{% url 'Register' %}">Registrarse</a></li>
+                        {% endif %}    
+                        {% if request.user.is_authenticated  %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'Logout' %}">Cerrar Sesión</a></li>
+                        {% endif %}
+                        
+                        
+                        <li class="nav-item"><a class="nav-link" href="{% url 'About' %}">About</a></li>
+                        
+                    
+                        
+                        {% if request.user.is_authenticated  %}
+                            <p class="text-muted big mb-f ml-lg0">{{user.username}}</p>
+
+                            <img class="img-fluid rounded-circle" src="{{ url }}" alt="Avatar del usuario" style="width: 30px; height: 30px; object-fit: cover;">
+                        {% endif %}
+                        
+                    </ul>
+                    {% if mensaje %}
+                        <p class="navbar-text text-white">{{ mensaje }}</p>
+                        
+                    {% endif %}
                 </div>
             </div>
         </nav>

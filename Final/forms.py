@@ -16,10 +16,11 @@ class AceiteForm(forms.ModelForm):
 
     # Personaliza el aspecto de los campos del formulario si es necesario
     widgets = {
-        'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre'}),
-        'descripcion': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descripción'}),
-        'uso': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Uso'}),
-    }
+            'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre'}),
+            'descripcion': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descripción'}),
+            'uso': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Uso'}),
+            'imagen': forms.ClearableFileInput(attrs={'class': 'form-control-file'})
+        }
 
 class Accesorios(forms.Form):
     art = forms.IntegerField()

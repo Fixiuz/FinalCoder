@@ -15,7 +15,13 @@ from django.contrib import messages
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import user_passes_test
 
+
+
+
+def es_administrador(user):
+    return user.is_authenticated and user.is_superuser
 
 def acerca_de_mi(request):
     return render(request, 'Final/about.html')
@@ -64,6 +70,10 @@ class AceiteCreate(CreateView):
     form_class = AceiteForm  
     success_url = reverse_lazy('List')
 
+    @method_decorator(login_required(login_url='Login'))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
 class AceiteList(ListView):
      model= Aceite
      template_name = 'Final/lista_aceites.html'
@@ -79,7 +89,14 @@ class AceiteActualizar(UpdateView):
     form_class = AceiteForm
     success_url = reverse_lazy('List')
     template_name = 'Final/actualizar_aceite.html'  
-      
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    @method_decorator(login_required(login_url='Login'))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)      
 
 
 class AceiteDelete(DeleteView):
@@ -87,6 +104,11 @@ class AceiteDelete(DeleteView):
     success_url = reverse_lazy('List')
     template_name = 'Final/aceite_confirm_delete.html'
 
+   
+
+    @method_decorator(login_required(login_url='Login'))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)   
 
 class CommentListView(ListView):
     model = Comment
@@ -113,12 +135,27 @@ class CommentUpdateView(UpdateView):
     form_class = CommentForm
     template_name = 'Final/comment_edit.html'  
     success_url = reverse_lazy('comment_list')
+    
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    @method_decorator(login_required(login_url='Login'))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)   
+
 
 
 class CommentDeleteView(LoginRequiredMixin, DeleteView):
     model = Comment
     template_name = 'Final/comment_confirm_delete.html'
     success_url = reverse_lazy('comment_list')
+    
+    @method_decorator(login_required(login_url='Login'))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)   
+
+
 
 class CommentDetailView(DetailView):
     model = Comment
@@ -199,4 +236,5 @@ def editarPerfil(request):
         miFormulario = UserEditForm(initial={'email': usuario.email})
 
     return render(request, "Final/editarPerfil.html", {"miFormulario": miFormulario, "usuario": usuario})
+
 

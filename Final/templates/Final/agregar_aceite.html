@@ -3,7 +3,7 @@
 {% block contenidoQueCambia %}
     {{mensaje}}
 
-    <h1>Agregar Aceite</h1>
+    <h2>Creación de un nuevo aceite</h2>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
